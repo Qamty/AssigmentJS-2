@@ -1,0 +1,142 @@
+//Write a function that creates a closure and returns a function that can add
+//a specific number to any number passed to it. For example, if the closure is
+//created with 5, the returned function should add 5 to any number passed
+//To it in JavaScript
+
+
+
+function addNClosure(n) {
+  function addN(x) {
+    return x + n;
+  }
+  return addN;
+}
+
+
+const add5 = addNClosure(5);
+console.log(add5(10));
+console.log(add5(20)); 
+console.log(add5(30)); 
+
+//2. Write a recursive function that searches an array for a specific value. The
+
+//function should return true if the value is found, and false if it is not. You
+
+//can assume that the array is not nested
+
+function searchArray(arr, val) {
+  if (arr.length === 0) { 
+    return false;
+  } else if (arr[0] === val) { 
+    return true;
+  } else { 
+    return searchArray(arr.slice(1), val);
+  }
+}
+let myArray = [1, 2, 3, 4, 5];
+if (searchArray(myArray, 3)) {
+  console.log("Value found in array");
+} else {
+  console.log("Value not found in array");
+}
+
+//3. Write a function that adds a new paragraph element to the bottom of an
+
+//HTML document.The function should take a string argument that will be
+
+//used as the text content of the new paragraph element
+
+
+function addNewParagraph(text) {
+  // create a new paragraph element
+  let newParagraph = document.createElement("p");
+
+  // set the text content of the new paragraph element
+  newParagraph.textContent = text;
+
+  // get the body element of the HTML document
+  let body = document.querySelector("body");
+
+  // add the new paragraph element to the bottom of the body element
+  body.appendChild(newParagraph);
+}
+addNewParagraph("This is a new paragraph added to the bottom of the HTML document.");
+
+//4. Write a function that adds a new list item to an unordered list in an HTML
+//document.The function should take a string argument that will be used as
+//the text content of the new list item.
+
+function addListItem(text) {
+  
+  let list = document.getElementById("myList");
+
+
+  let newItem = document.createElement("li");
+  let itemText = document.createTextNode(text);
+  newItem.appendChild(itemText);
+
+  
+  list.appendChild(newItem);
+}
+addListItem("New item text");
+
+//5. Write a function that changes the background color of an HTML element.
+//The function should take two arguments: the first argument is a reference
+//to the HTML element, and the second argument is a string representing
+//the new background color
+
+
+function changeBackgroundColor(element, color) {
+  element.style.backgroundColor = color;
+}
+<div id="myElement">This is my element</div>
+
+<script>
+  var element = document.getElementById("myElement");
+  changeBackgroundColor(element, "blue");
+</script>
+
+//6. Write a function that saves an object to localStorage.The function should
+//take two arguments: the first argument is a string representing the //key to
+//use for storing the object, and the second argument is the object //to store
+
+function saveObjectToLocalStorage(key, object) {
+  localStorage.setItem(key, JSON.stringify(object));
+}
+var myObject = {
+  name: "John",
+  age: 30,
+  city: "New York"
+};
+
+saveObjectToLocalStorage("myKey", myObject);
+
+
+//7. Write a function that retrieves an object from localStorage. The function
+//should take one argument, which is a string representing the key used to
+//store the object. The function should return the object.
+
+function retrieveFromLocalStorage(key) {
+  const item = localStorage.getItem(key);
+  return JSON.parse(item);
+}
+
+
+
+//8. Write a function that takes an object and saves each property to
+//localStorage using the property name as the key and the property //value as
+//the value.The function should also retrieve the object from //localStorage
+//and return it as a new object.
+
+
+function saveObjectToLocalStorage(obj) {
+  for (let key in obj) {
+    localStorage.setItem(key, JSON.stringify(obj[key]));
+  }
+  let newObj = {};
+  for (let i = 0; i < localStorage.length; i++) {
+    let key = localStorage.key(i);
+    newObj[key] = JSON.parse(localStorage.getItem(key));
+  }
+  return newObj;
+}
